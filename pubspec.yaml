@@ -1,0 +1,32 @@
+name: zoleta_mobprog
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.14.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  material_ui: ^1.1.0
+  flutter_screenutil: ^5.9.3
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/sana_natori_1st_live.png
+  fonts:
+    - family: FredokaBold
+      fonts:
+        - asset: assets/fonts/Fredoka-Bold.ttf
+    - family: FredokaSemiCondensed
+      fonts:
+        - asset: assets/fonts/Fredoka_SemiCondensed-Regular.ttf
