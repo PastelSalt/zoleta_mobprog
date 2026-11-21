@@ -11,6 +11,7 @@ class NewsfeedCard extends StatelessWidget {
     required this.numOfLikes,
     this.hasImage = false,
     this.imagePath,
+    this.profileImagePath,
   });
 
   final String userName;
@@ -19,6 +20,7 @@ class NewsfeedCard extends StatelessWidget {
   final int numOfLikes;
   final bool hasImage;
   final String? imagePath;
+  final String? profileImagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +35,14 @@ class NewsfeedCard extends StatelessWidget {
             // User info row
             Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   backgroundColor: fbLightPrimary,
-                  child: Icon(Icons.person, color: fbDarkPrimary),
+                  backgroundImage: profileImagePath != null
+                      ? AssetImage(profileImagePath!) as ImageProvider
+                      : null,
+                  child: profileImagePath == null
+                      ? const Icon(Icons.person, color: fbDarkPrimary)
+                      : null,
                 ),
                 const SizedBox(width: 10),
                 Column(
@@ -45,12 +52,14 @@ class NewsfeedCard extends StatelessWidget {
                       text: userName,
                       fontSize: 16,
                       color: Colors.black87,
+                      fontFamily: 'FredokaBold',
                       fontWeight: FontWeight.bold,
                     ),
                     CustomText(
                       text: date,
                       fontSize: 12,
                       color: Colors.grey,
+                      fontFamily: 'FredokaSemiCondensed',
                     ),
                   ],
                 ),
@@ -62,6 +71,7 @@ class NewsfeedCard extends StatelessWidget {
               text: postContent,
               fontSize: 14,
               color: Colors.black,
+              fontFamily: 'FredokaSemiCondensed',
             ),
             if (hasImage) ...[
               const SizedBox(height: 10),
@@ -93,39 +103,20 @@ class NewsfeedCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  children: [
-                    const Icon(Icons.thumb_up, size: 18, color: fbPrimary),
-                    const SizedBox(width: 6),
-                    CustomText(
-                      text: '$numOfLikes',
-                      fontSize: 13,
-                      color: fbDarkPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
+                NewsfeedActionButton(
+                  icon: Icons.thumb_up,
+                  label: '$numOfLikes',
+                  iconColor: fbPrimary,
                 ),
-                const Row(
-                  children: [
-                    CustomText(
-                      text: 'Comment',
-                      fontSize: 13,
-                      color: fbDarkPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
+                const NewsfeedActionButton(
+                  icon: Icons.chat_bubble_outline,
+                  label: 'Comment',
+                  iconColor: fbDarkPrimary,
                 ),
-                const Row(
-                  children: [
-                    Icon(Icons.reply, size: 18, color: fbDarkPrimary),
-                    SizedBox(width: 6),
-                    CustomText(
-                      text: 'Share',
-                      fontSize: 13,
-                      color: fbDarkPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
+                const NewsfeedActionButton(
+                  icon: Icons.reply,
+                  label: 'Share',
+                  iconColor: fbDarkPrimary,
                 ),
               ],
             ),
@@ -150,6 +141,7 @@ class NewsfeedCard extends StatelessWidget {
                       text: 'Write a comment...',
                       fontSize: 13,
                       color: Colors.grey,
+                      fontFamily: 'FredokaSemiCondensed',
                     ),
                   ),
                 ),
@@ -161,11 +153,43 @@ class NewsfeedCard extends StatelessWidget {
               text: 'View all comments',
               fontSize: 13,
               color: Colors.black87,
+              fontFamily: 'FredokaBold',
               fontWeight: FontWeight.bold,
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class NewsfeedActionButton extends StatelessWidget {
+  const NewsfeedActionButton({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.iconColor,
+  });
+
+  final IconData icon;
+  final String label;
+  final Color iconColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 18, color: iconColor),
+        const SizedBox(width: 6),
+        CustomText(
+          text: label,
+          fontSize: 13,
+          color: fbDarkPrimary,
+          fontFamily: 'FredokaSemiCondensed',
+          fontWeight: FontWeight.bold,
+        ),
+      ],
     );
   }
 }

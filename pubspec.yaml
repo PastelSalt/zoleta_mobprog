@@ -23,3 +23,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/sana_natori_1st_live.png
+    - assets/images/sana_natori_profile.webp
+    - assets/images/sara_hoshikawa_profile.jpeg
+  fonts:
+    - family: FredokaBold
+      fonts:
+        - asset: assets/fonts/Fredoka-Bold.ttf
+    - family: FredokaSemiCondensed
+      fonts:
+        - asset: assets/fonts/Fredoka_SemiCondensed-Regular.ttf
