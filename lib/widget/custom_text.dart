@@ -9,7 +9,7 @@ class CustomText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.left,
     this.letterSpacing = 0,
-    this.fontFamily = 'FredokaSemiCondensed',
+    this.fontFamily = 'Frutiger',
     this.fontStyle = FontStyle.normal,
   });
 

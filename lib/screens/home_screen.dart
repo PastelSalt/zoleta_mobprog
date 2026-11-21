@@ -25,8 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
           text: 'Facebook',
           fontSize: ScreenUtil().setSp(25),
           color: fbPrimary,
-          fontFamily: 'FredokaBold',
-          fontWeight: FontWeight.bold,
+          fontFamily: 'Klavika',
+          fontWeight: FontWeight(700),
         ),
       ),
       body: PageView(
