@@ -1,5 +1,6 @@
 import 'package:zoleta_mobprog/constant.dart';
 import 'package:zoleta_mobprog/widget/custom_text.dart';
+import 'package:zoleta_mobprog/widget/wireframe_image_placeholder.dart';
 import 'package:material_ui/material_ui.dart';
 
 class NewsfeedCard extends StatelessWidget {
@@ -83,17 +84,7 @@ class NewsfeedCard extends StatelessWidget {
                         width: double.infinity,
                         fit: BoxFit.cover,
                       )
-                    : Container(
-                        height: 200,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: fbLightPrimary.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Center(
-                          child: Icon(Icons.image, size: 50, color: fbPrimary),
-                        ),
-                      ),
+                    : const WireframeImagePlaceholder(),
               ),
             ],
             const SizedBox(height: 12),

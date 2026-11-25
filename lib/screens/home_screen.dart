@@ -1,6 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zoleta_mobprog/constant.dart';
 import 'package:zoleta_mobprog/screens/newsfeed_screen.dart';
+import 'package:zoleta_mobprog/screens/notifications_screen.dart';
 import 'package:zoleta_mobprog/widget/custom_text.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -15,6 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
+  final List<String> _titles = [
+    'Zoleta Social',
+    'Friends',
+    'Notifications',
+    'Menu',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
         shadowColor: fbTextColorWhite,
         elevation: 2,
         title: CustomText(
-          text: 'Facebook',
-          fontSize: ScreenUtil().setSp(25),
+          text: _titles[_selectedIndex],
+          fontSize: ScreenUtil().setSp(22),
           color: fbPrimary,
           fontFamily: 'FredokaBold',
           fontWeight: FontWeight.bold,
@@ -31,7 +39,26 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: PageView(
         controller: _pageController,
-        children: const <Widget>[NewsfeedScreen()],
+        children: <Widget>[
+          const NewsfeedScreen(),
+          Center(
+            child: CustomText(
+              text: 'Friends Screen',
+              fontSize: ScreenUtil().setSp(18),
+              color: fbDarkPrimary,
+              fontFamily: 'FredokaSemiCondensed',
+            ),
+          ),
+          const NotificationsScreen(),
+          Center(
+            child: CustomText(
+              text: 'Menu Screen',
+              fontSize: ScreenUtil().setSp(18),
+              color: fbDarkPrimary,
+              fontFamily: 'FredokaSemiCondensed',
+            ),
+          ),
+        ],
         onPageChanged: (page) {
           setState(() {
             _selectedIndex = page;
@@ -39,8 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         showUnselectedLabels: false,
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         onTap: _onTappedBar,
         items: const [
           BottomNavigationBarItem(
@@ -48,11 +76,20 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: 'Friends',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
             label: 'Notifications',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu),
+            label: 'Menu',
+          ),
         ],
         selectedItemColor: fbPrimary,
+        unselectedItemColor: Colors.grey,
         currentIndex: _selectedIndex,
       ),
     );
